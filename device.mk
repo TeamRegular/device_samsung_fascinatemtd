@@ -162,6 +162,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
        ro.telephony.ril_class=SamsungExynos3RIL \
        ro.telephony.ril.v3=datacall
 
+# Support for Browser's saved page feature. This allows
+# for pages saved on previous versions of the OS to be
+# viewed on the current OS.
+PRODUCT_PACKAGES += \
+	libskia_legacy
+
 # These are the hardware-specific settings that are stored in system properties.
 # Note that the only such settings should be the ones that are too low-level to
 # be reachable from resources or other mechanisms.
