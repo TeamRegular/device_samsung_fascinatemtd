@@ -13,3 +13,6 @@ ro.device.gpu=Imagination Technologies PowerVR SGX 540
 ro.device.rear_cam=5 MP 720p HD
 ro.device.front_cam=VGA
 ro.device.screen_res=480x800
+
+# SGX540 is slower with the scissor optimization enabled
+ro.hwui.disable_scissor_opt=true
