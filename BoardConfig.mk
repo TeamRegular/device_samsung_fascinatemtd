@@ -42,6 +42,8 @@ TARGET_BOOTLOADER_BOARD_NAME := aries
 
 BOARD_MOBILEDATA_INTERFACE_NAME := "ppp0"
 BOARD_UMS_LUNFILE := /sys/class/android_usb/android0/f_mass_storage/lun/file
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/s3c-usbgadget/gadget/lun%d/file"
+
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/fascinatemtd
