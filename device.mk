@@ -41,7 +41,6 @@
 
 # These are the hardware-specific configuration files
 PRODUCT_COPY_FILES := \
-	device/samsung/fascinatemtd/vold.fstab:system/etc/vold.fstab \
 	device/samsung/aries-common/egl.cfg:system/lib/egl/egl.cfg \
 	device/samsung/aries-common/mxt224_ts_input.idc:system/usr/idc/mxt224_ts_input.idc
 
@@ -53,7 +52,7 @@ PRODUCT_COPY_FILES += \
 	device/samsung/aries-common/init.aries.usb.rc:recovery/root/usb.rc \
 	device/samsung/aries-common/lpm.rc:root/lpm.rc \
 	device/samsung/fascinatemtd/ueventd.aries.rc:root/ueventd.aries.rc \
-	device/samsung/aries-common/fstab.aries:root/fstab.aries \
+	device/samsung/fascinatemtd/fstab.aries:root/fstab.aries \
 	device/samsung/aries-common/setupdatadata.sh:root/sbin/setupdatadata.sh
 
 # Prebuilt kl keymaps

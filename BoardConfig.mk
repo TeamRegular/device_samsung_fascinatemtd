@@ -120,6 +120,8 @@ BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/aries-common/recovery/graphics.
 BOARD_USES_BML_OVER_MTD := true
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/fascinatemtd/shbootimg.mk
 TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /cache/.startrecovery; sync;"
+TARGET_RECOVERY_FSTAB := device/samsung/fascinatemtd/fstab.aries
+RECOVERY_FSTAB_VERSION := 2
 
 # Charging mode
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/charging_mode_booting
