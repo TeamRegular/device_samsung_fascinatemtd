@@ -61,10 +61,6 @@ PRODUCT_COPY_FILES += \
 	device/samsung/aries-common/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
 	device/samsung/aries-common/s3c-keypad.kl:system/usr/keylayout/s3c-keypad.kl
 
-# ppp
-PRODUCT_COPY_FILES += \
-	device/samsung/fascinatemtd/ip-up:system/etc/ppp/ip-up
-
 # Generated kcm keymaps
 PRODUCT_PACKAGES := \
        cypress-touchkey.kcm \
@@ -150,17 +146,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
        ro.ril.def.agps.mode=2 \
        ro.cdma.homesystem=64,65,76,77,78,79,80,81,82,83 \
        ro.cdma.data_retry_config=default_randomization=2000,0,0,120000,180000,540000,960000 \
-       ro.cdma.otaspnumschema=SELC,3,00,07,80,87,88,99 \
-       ro.config.vc_call_vol_steps=15 \
-       net.cdma.pppd.authtype=require-chap \
-       net.cdma.datalinkinterface=/dev/ttyCDMA0 \
-       net.cdma.ppp.interface=ppp0 \
-       net.connectivity.type=CDMA1 \
-       net.interfaces.defaultroute=cdma \
-       mobiledata.interfaces=ppp0 \
-       ro.ril.samsung_cdma=true \
-       ro.telephony.ril_class=SamsungExynos3RIL \
-       ro.telephony.ril.v3=datacall
+       ro.cdma.otaspnumschema=SELC,3,00,07,80,87,88,99
 
 # Support for Browser's saved page feature. This allows
 # for pages saved on previous versions of the OS to be
