@@ -134,14 +134,3 @@ BOARD_CHARGER_RES := device/samsung/fascinatemtd/charger
 
 # SkTextBox for libtvout
 BOARD_USES_SKTEXTBOX := true
-
-# SELinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/fascinatemtd/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    pvrsrvinit.te \
-    rild.te \
-    device.te \
-    domain.te
