@@ -134,3 +134,21 @@ BOARD_CHARGER_RES := device/samsung/fascinatemtd/charger
 
 # SkTextBox for libtvout
 BOARD_USES_SKTEXTBOX := true
+
+# SELinux
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/aries-common/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+    bdaddr_read.te \
+    device.te \
+    domain.te \
+    file_contexts \
+    geomagneticd.te \
+    mediaserver.te \
+    orientationd.te \
+    property_contexts \
+    pvrsrvinit.te \
+    rild.te \
+    tvouthack.te \
+    tvoutserver.te

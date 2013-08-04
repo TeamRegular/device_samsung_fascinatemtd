@@ -74,6 +74,7 @@ on post-fs
 
     chown system system /datadata
     chmod 0771 /datadata
+    restorecon /datadata
 
 # for sensor control
     chown root input /sys/class/input/input0/enable
@@ -242,6 +243,7 @@ service gpsd /system/vendor/bin/gpsd
 service bdaddr /system/bin/bdaddr_read
     class main
     user root
+    group system bluetooth
     disabled
     oneshot
 
