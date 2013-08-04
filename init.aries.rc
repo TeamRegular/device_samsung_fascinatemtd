@@ -29,6 +29,9 @@ on boot
     setprop status.battery.level_raw  50
     setprop status.battery.level_scale 9
 
+ # TelephonyManager.java requires this
+    chmod 0644 /proc/cmdline
+
 # set BT MAC address
     setprop ro.bt.bdaddr_path /data/bdaddr
 
