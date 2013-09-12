@@ -159,7 +159,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
        net.interfaces.defaultroute=cdma \
        mobiledata.interfaces=ppp0 \
        ro.ril.samsung_cdma=true \
-       ro.telephony.ril_class=SamsungExynos3RIL \
+       ro.telephony.ril_class=SamsungExynostestRIL \
        ro.telephony.ril.v3=datacall
 
 # Support for Browser's saved page feature. This allows
