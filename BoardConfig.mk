@@ -127,6 +127,9 @@ TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /cache/.startrecovery; sync;"
 TARGET_RECOVERY_FSTAB := device/samsung/fascinatemtd/fstab.aries
 RECOVERY_FSTAB_VERSION := 2
 
+# RIL
+BOARD_RIL_CLASS := ../../../device/samsung/fascinatemtd/ril/
+
 # Charging mode
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/charging_mode_booting
 # Suspend in charger to disable capacitive keys
