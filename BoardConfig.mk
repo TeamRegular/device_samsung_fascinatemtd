@@ -138,6 +138,9 @@ BOARD_CHARGER_RES := device/samsung/fascinatemtd/charger
 # SkTextBox for libtvout
 BOARD_USES_SKTEXTBOX := true
 
+# Hardware tunables
+BOARD_HARDWARE_CLASS := device/samsung/aries-common/cmhw/
+
 # SELinux
 BOARD_SEPOLICY_DIRS += \
     device/samsung/aries-common/sepolicy
