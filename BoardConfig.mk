@@ -138,6 +138,15 @@ BOARD_CHARGER_RES := device/samsung/fascinatemtd/charger
 # SkTextBox for libtvout
 BOARD_USES_SKTEXTBOX := true
 
+# TWRP 2 details
+DEVICE_RESOLUTION := 480x800
+TW_INCLUDE_INJECTTWRP := true
+TW_NO_REBOOT_BOOTLOADER := true
+TW_EXTERNAL_STORAGE_PATH := "/sdcard"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
+TW_DEFAULT_EXTERNAL_STORAGE := true
+HAVE_SELINUX := true
+
 # Hardware tunables
 BOARD_HARDWARE_CLASS := device/samsung/aries-common/cmhw/
 
