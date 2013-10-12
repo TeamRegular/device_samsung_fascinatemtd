@@ -45,4 +45,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
        ro.cdma.home.operator.alpha=Verizon \
        net.cdma.pppd.user=user[SPACE]VerizonWireless
 
-TARGET_OTA_ASSERT_DEVICE := aries,fascinate,fascinatemtd,SCH-I500
+# Stock ROM does not like this you should know your phone anyway
+# TARGET_OTA_ASSERT_DEVICE := aries,fascinate,fascinatemtd,SCH-I500
