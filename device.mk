@@ -39,6 +39,12 @@
 # of hardware-specific resource overrides, typically the frameworks and
 # application settings that are stored in resourced.
 
+DEVICE_PACKAGE_OVERLAYS := device/samsung/fascinatemtd/overlay \
+	device/samsung/aries-common/overlay
+
+# Galaxy S uses high-density artwork where available
+PRODUCT_LOCALES += hdpi
+
 # These are the hardware-specific configuration files
 PRODUCT_COPY_FILES := \
 	device/samsung/aries-common/egl.cfg:system/lib/egl/egl.cfg \
@@ -84,6 +90,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
 
+PRODUCT_PROPERTY_OVERRIDES := \
+    ro.ril.hsxpa=1 \
+    ro.ril.gprsclass=10 \
+    ro.adb.qemud=1
+
 # These are the OpenMAX IL configuration files
 PRODUCT_COPY_FILES += \
 	hardware/samsung/exynos3/s5pc110/sec_mm/sec_omx/sec_omx_core/secomxregistry:system/etc/secomxregistry \
@@ -108,7 +119,9 @@ PRODUCT_PACKAGES += \
 	audio.usb.default \
 	libs3cjpeg \
 	sensors.aries \
-	power.s5pc110
+	power.s5pc110 \
+        audio.primary.goldfish \
+        power.goldfish
 
 PRODUCT_COPY_FILES += \
 	device/samsung/fascinatemtd/libaudio/audio_policy.conf:system/etc/audio_policy.conf
@@ -161,7 +174,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
        mobiledata.interfaces=ppp0 \
        ro.ril.samsung_cdma=true \
        ro.telephony.ril_class=SamsungExynos3RIL \
-       ro.telephony.ril.v3=datacall
+       ro.telephony.ril.v3=datacall \
+       ro.cdma.home.operator.numeric=310004 \
+       ro.cdma.home.operator.alpha=Verizon \
+       net.cdma.pppd.user=user[SPACE]VerizonWireless
 
 # Support for Browser's saved page feature. This allows
 # for pages saved on previous versions of the OS to be
