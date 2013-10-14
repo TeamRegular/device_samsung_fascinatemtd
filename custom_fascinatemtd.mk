@@ -27,9 +27,17 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 $(call inherit-product, vendor/custom/config/common.mk)
 
 # Inherit from hardware-specific part of the product configuration
-$(call inherit-product, device/samsung/fascinatemtd/full_fascinatemtd.mk)
+$(call inherit-product, device/samsung/fascinatemtd/device.mk)
 
 PRODUCT_NAME := custom_fascinatemtd
+PRODUCT_DEVICE := fascinatemtd
 PRODUCT_BRAND := samsung
 PRODUCT_MODEL := SCH-I500
 PRODUCT_MANUFACTURER := Samsung
+
+# Kernel inline build
+TARGET_KERNEL_CONFIG := cyanogenmod_fascinatemtd_defconfig
+TARGET_VARIANT_CONFIG := cyanogenmod_fascinatemtd_defconfig
+TARGET_SELINUX_CONFIG := cyanogenmod_fascinatemtd_defconfig
+
+$(call inherit-product-if-exists, vendor/samsung/fascinatemtd/fascinatemtd-vendor.mk)
