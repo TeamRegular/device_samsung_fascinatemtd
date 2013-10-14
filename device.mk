@@ -62,6 +62,13 @@ PRODUCT_COPY_FILES += \
 	device/samsung/aries-common/setupdatadata.sh:root/sbin/setupdatadata.sh \
         device/samsung/fascinatemtd/recovery/twrp.fstab:recovery/root/etc/twrp.fstab
 
+# Utiltiies
+PRODUCT_COPY_FILES += \
+	device/samsung/fascinatemtd/utilities/make_et4fs:utilities/make_et4fs \
+	device/samsung/fascinatemtd/utilities/flash_image:utilities/flash_image \
+	device/samsung/fascinatemtd/utilities/erase_img:utilities/erase_image \
+	device/samsung/fascinatemtd/utilities/busybox:utilities/busybox
+
 # Prebuilt kl keymaps
 PRODUCT_COPY_FILES += \
 	device/samsung/aries-common/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl \
