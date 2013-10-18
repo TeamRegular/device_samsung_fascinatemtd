@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Sync all the remote committed changes
+cd bionic;
+git fetch https://github.com/C457/android_bionic-1.git cm-10.2;
+git cherry-pick d6da3f2d217d71b115fb617b4b99b0142f909269;
+git cherry-pick d6da3f2d217d71b115fb617b4b99b0142f909269;
+cd ..;
+cd hardware/broadcom;
+rm -rf wlan;
+git clone https://github.com/CyanogenMod/android_hardware_broadcom_wlan.git -b cm-10.2 wlan
+cd ..;cd ..;

@@ -13,6 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-$(call inherit-product, device/samsung/fascinatemtd/custom_fascinatemtd.mk)
+$(call inherit-product, device/samsung/fascinatemtd/full_fascinatemtd.mk)
 
 PRODUCT_NAME := aosp_fascinatemtd

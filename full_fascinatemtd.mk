@@ -19,8 +19,8 @@
 # product configuration (apps).
 #
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 # Device Specific files
 $(call inherit-product, device/samsung/fascinatemtd/device.mk)
@@ -29,5 +29,5 @@ $(call inherit-product, device/samsung/fascinatemtd/device.mk)
 PRODUCT_NAME := full_fascinatemtd
 PRODUCT_DEVICE := fascinatemtd
 PRODUCT_BRAND := samsung
-PRODUCT_MANUFACTURER := samsung
+PRODUCT_MANUFACTURER := Samsung
 PRODUCT_MODEL := SCH-I500
