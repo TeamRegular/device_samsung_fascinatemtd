@@ -21,15 +21,15 @@
 PRODUCT_COPY_FILES := device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
 
 # Inherit from the common Open Source product configuration
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
 
 # Inherit from hardware-specific part of the product configuration
-$(call inherit-product, device/samsung/fascinatemtd/device.mk)
+$(call inherit-product, device/samsung/fascinatemtd/full_fascinatemtd.mk)
 
-PRODUCT_NAME := custom_fascinatemtd
+PRODUCT_NAME := omni_fascinatemtd
 PRODUCT_DEVICE := fascinatemtd
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := Samsung

@@ -1,0 +1,213 @@
+#!/bin/bash
+
+###################################################################
+#                                                                 #
+# Created by Sniper/Goldflame09/wedgess/Papa Smurf151 for PAC-man #
+#                                                                 #
+###################################################################
+
+VERSION=0.9
+BUILD=9
+
+set_up_user(){
+if [ -f ${HOME}/.omni/username ]; then
+   GUZER=`cat ${HOME}/.omni/username`
+else
+   echo -n "Please enter your Gerrit UserName: "; read GUZER
+   echo "Your entered ${GUZER} is this correct"
+   echo "Enter 1 for Yes or 2 for No"
+   select correct1 in "Yes" "No"; do
+   case ${correct1} in
+        Yes ) mkdir -p ${HOME}/.omni;
+              echo ${GUZER} > ${HOME}/.omni/username;
+              echo "Your new gerrit username is: ${GUZER}"; break;;
+        No ) echo -n "Re-Enter Gerrit UserName: "; read GUZER; echo; mkdir -p ${HOME}/.omni; echo ${GUZER} > ${HOME}/.omni/username; echo "Your new gerrit username is: ${GUZER}"; break;;
+        *) clear; echo "Invalid Entry ${correct1}, Please enter a number between [1 - 2]"; echo; set_up_user; break;;
+   esac
+ done
+fi
+}
+
+
+new_branch() {
+   rm -f ${HOME}/.omni/branch
+   select correct1 in "android-4.3"; do
+     case ${correct1} in
+        CM-10.2 ) BRANCH="android-4.3"; break;;
+        * ) clear; echo "Invalid Entry ${correct1}, Please enter from the options provided."; echo; echo; new_branch; break;;
+     esac
+   done
+   echo ${BRANCH} > ${HOME}/.omni/branch
+   BRANCH=`cat ${HOME}/.omni/branch`
+   echo "Your new current branch is: ${BRANCH}"
+}
+
+correct_commit() {
+clear; echo ${MSSG}; echo
+echo "Is this correct ??"
+echo "Enter 1 for Yes and 2 for No"
+  select correct2 in "Yes" "No"; do
+   case ${correct2} in
+	Yes ) echo "Commit set to ${MSSG}"; break;;
+	No ) echo "Re-enter commit message"; read MSSG; break;;
+	* ) clear; echo "Invalid Entry ${correct2}, Please re-try"; echo; echo; correct_commit; break ;;
+   esac
+  done
+}
+
+ap () {
+git add -A
+scp -p -P 29418 ${GUZER}@gerrit.omnirom.org:hooks/commit-msg .git/hooks/
+   echo "Add commit message below.
+--------------------------"
+   read MSSG
+   correct_commit
+git commit -a -m "${MSSG}"
+push
+}
+
+
+push () {
+echo -n "Are you sure you want to push? (y/n): "; read RESP
+if [ "${RESP}" == "y" ] || [ "${RESP}" == "Y" ]; then
+	if [ -f ${HOME}/.omni/branch ]; then
+  	  echo "Current branch: `cat ${HOME}/.omni/branch`"
+  	  echo -n "Push to current branch? (y/n): "; read CTPUSH
+  		if [ "${CTPUSH}" == "y" ] || [ "${CTPUSH}" == "Y" ]; then
+			BRANCH=`cat ${HOME}/.omni/branch`
+  		else
+			new_branch
+  		fi
+	else
+	  new_branch
+	fi
+    PROJECT=`grep PAC-man .git/config | awk -F/ '{print $NF}'`
+    git push ssh://${GUZER}@gerrit.omnirom.org:29418/${PROJECT} HEAD:refs/\for/${BRANCH}
+else
+  echo "Canceled"
+fi
+}
+
+
+amend () {
+   echo -n "Have you edited the files?/Do you want to change commit message? (y/n):"; read RESPa
+if [ "${RESPa}" == "y" ] || [ "${RESPa}" == "Y" ]; then
+   git add -A
+   git commit --amend
+   push
+elif [ "${RESPa}" == "n" ] || [ "${RESPa}" == "N" ]; then
+	echo "Please edit them"
+	echo "Press 1 after you edit them"
+	read amend1
+	if [ ${amend1} == "1" ]; then
+		git add -A
+		git commit --amend
+		push
+	else
+		echo "Take your time and come back when you are ready"
+	fi
+fi
+}
+
+
+correct_gname() {
+echo "Your entered ${GUZER} is this correct?"
+echo "Enter 1 for Yes and 2 for No"
+   select correct1 in "Yes" "No"; do
+   case ${correct1} in
+	Yes ) mkdir ${HOME}/.omni; echo ${GUZER} > ${HOME}/.omni/username; echo "Your new gerrit username is: ${GUZER}"; break;;
+	No ) echo -n "Re-Enter Gerrit UserName: "; read GUZER; echo; mkdir -p ${HOME}/.omni; echo ${GUZER} > ${HOME}/.omni/username; echo "Your new gerrit username is: ${GUZER}"; break;;
+	* ) clear; echo "Invalid Entry ${correct1}, Please re-try"; echo; echo; correct_gname break ;;
+   esac
+  done
+}
+
+
+nameq_question() {
+  select NAME in "View" "New"; do
+   case ${NAME} in
+      View ) if [ -f ${HOME}/.omni/username ]; then
+           echo "Your current gerrit username is: ${GUZER}";
+	  else
+	   echo "No gerrit username found..";
+	  fi; break;;
+      New ) echo -n "Enter your new gerrit username: "; read GUZER; correct_gname; break;;
+      * ) clear; echo "${NAME} is not a valid option (Choose 1 or 2)"; nameq_question; break;;
+   esac
+  done
+}
+
+
+name () {
+   echo "Enter an option:"
+   echo "   1. View your current gerrit username"
+   echo "   2. Enter a new gerrit username"
+   echo; nameq_question
+}
+
+
+sshkey () {
+if [ -e ${HOME}/.ssh/id_rsa.pub ]; then
+   echo "SSH Key already exists.
+
+Go to Omni Gerrit (http://gerrit.omnirom.org), sign in, go to settings, 
+and click on SSH Public Keys. Use Control + Click to open URL.
+
+Click on add SSH Key and copy and paste contents of file from .ssh/id_rsa.pub."
+read -p "Press [Enter] to open file..."
+   gnome-open ${HOME}/.ssh/id_rsa.pub
+else
+   ssh-keygen
+   echo "Go to Omni Gerrit (http://gerrit.omnirom.org), sign in, go to settings, 
+and click on SSH Public Keys. Use Control + Click to open URL.
+
+Click on add SSH Key and copy and paste contents of file from .ssh/id_rsa.pub."
+read -p "Press [Enter] to open file..."
+   gnome-open ${HOME}/.ssh/id_rsa.pub
+fi
+}
+
+error () {
+   echo " "
+   echo "Usage: omni-review [-short command]"
+   echo "Or:    omni-review [long comand]"
+   echo " "
+   echo "Commands:"
+   echo "   add+push   	(-ap)  --- Add and push to gerrit"
+   echo "   amend  	(-am)  --- Amend the commit and push"
+   echo "   force	(-uf)  --- Force the script to grab a new version"
+   echo "   name   	(-n)   --- View or edit your gerrit username"
+   echo "   branch	(-nb)  --- Choose a new branch to push to"
+   echo "   push   	(-p)   --- Push to gerrit"
+   echo "   sshkey 	(-ssh) --- Create/show SSH key to put on Gerrit"
+   echo "   update 	(-u)   --- Check for, and download an update if one is available"
+   echo " "
+   echo "If you encounter problems, check if:"
+   echo "   1. Your gerrit username is correct (using the name option)"
+   echo "   2. Your current branch is correct"
+   echo "   3. Your public ssh key is attached to your gerrit profile"
+   echo " "
+   echo " "
+
+}
+
+
+if [ ! -d ${HOME}/bin ]; then
+ mkdir -p ${HOME}/bin
+ echo "# Add ~/bin to PATH" >> ${HOME}/.bashrc
+ echo "export PATH=${PATH}:~/bin" >> ${HOME}/.bashrc
+fi
+
+set_up_user
+
+case $1 in
+   -n|name)name;;
+   -nb|branch)new_branch;;
+   -u|update)update;;
+   -p|push)push;;
+   -ssh|sshkey)sshkey;;
+   -ap|add+push)ap;;
+   -am|amend)amend;;
+   -uf|force)uf;;
+   -h|help|*)error;;
+esac
