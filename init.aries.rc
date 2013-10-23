@@ -7,7 +7,10 @@ on init
     # FIXME: Market checks this variable for space-checking, but downloads to /datadata
     export DOWNLOAD_CACHE /data/download
 
-    mkdir /storage/sdcard0 0000 root root
+    mkdir /storage 0775 system system
+    mkdir /storage/sdcard0 0775 system system
+
+    # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
 
